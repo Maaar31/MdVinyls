@@ -1,0 +1,168 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #121212;
+    color: #fff;
+    transition: background-color 0.5s ease;
+  }
+  
+  .container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  #status {
+    margin-bottom: 20px;
+  }
+  
+  .player {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .album-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .album-container:hover {
+    transform: scale(1.05);
+  }
+  
+  #album-art {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  .vinyl {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: url('vinyl.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) translateY(100%);
+    transition: transform 0.5s ease;
+    animation: spin 4s linear infinite;
+  }
+  
+  .album-container.active #album-art {
+    transform: scale(1.2);
+    transition: transform 0.5s ease;
+  }
+  
+  .album-container.active .vinyl {
+    transform: translate(-50%, -50%) translateY(50%);
+  }
+  
+  .album-large {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none; /* Masquer l'album large pour éviter les chevauchements */
+  }
+  
+  #album-art-large {
+    width: 70%;
+    max-width: 600px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  #vinyl-small {
+    width: 25%;
+    max-width: 150px;
+    margin-left: -50px;
+    background: url('vinyl.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    animation: spin 4s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    } 
+  }
+  
+  h2, h3 {
+    margin: 10px 0;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1db954;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #17a44f;
+  }
+  
+  #playback-status {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  /* Styles pour les widgets */
+  .widget {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .widget img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .widget-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .widget-info h4, .widget-info p {
+    margin: 0;
+    color: #fff;
+  }
+
+  .widgets-container {
+    margin-top: 20px;
+  }

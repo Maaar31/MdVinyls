@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Music Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Spotify Music Visualizer</h1>
+    </header>
+    <main>
+        <div class="container">
+            <p id="status">Chargement...</p>
+
+            <div class="player">
+                <div class="album-container" onclick="toggleVinyl()">
+                    <img id="album-art" src="vinyl.png" alt="Album Art">
+                    <div id="vinyl" class="vinyl"></div>
+                </div>
+
+                <h2 id="track-name">Aucune musique en cours</h2>
+                <h3 id="artist-name">Artiste inconnu</h3>
+            </div>
+
+            <button id="connect-btn" onclick="redirectToSpotify()">Se connecter à Spotify</button>
+            <button id="refresh-btn" onclick="handleTokenExpiration()" style="display: none;">Reconnecter à Spotify</button>
+            <div id="playback-status" style="display: none;">
+                <p>Lecture : <span id="playback-info">En pause</span></p>
+            </div>
+        </div>
+        <div id="widgets" class="widgets-container"></div>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
