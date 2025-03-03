@@ -2,18 +2,21 @@ let accessToken = null;
 
 // Fonction pour rediriger vers Spotify pour se connecter
 function redirectToSpotify() {
-    const clientId = "c3b94a096f0e4ca392978b6ee67d002c";
-    const redirectUri = "https://maaar31.github.io/spotify-music-visualizer/";
+    const clientId = "76e57face1934d508078cceadc4a228b"; // Nouveau client ID
+    const redirectUri = "https://maaar31.github.io/MdVinyls/"; // Nouveau lien de redirection
     const scopes = "user-read-playback-state user-modify-playback-state";
     const url = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
+    console.log("Redirection vers Spotify:", url); // Log de débogage
     window.location.href = url;
 }
 
 // Fonction pour gérer le token après la redirection
 function handleSpotifyRedirect() {
     const hash = window.location.hash;
+    console.log("Hash de redirection:", hash); // Log de débogage
     if (hash) {
         const token = new URLSearchParams(hash.substring(1)).get("access_token");
+        console.log("Token récupéré:", token); // Log de débogage
         if (token) {
             accessToken = token;
             document.getElementById("status").innerText = "Connecté à Spotify !";
