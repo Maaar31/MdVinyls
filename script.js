@@ -4,7 +4,7 @@ let accessToken = null;
 function redirectToSpotify() {
     const clientId = "76e57face1934d508078cceadc4a228b"; // Nouveau client ID
     const redirectUri = "https://maaar31.github.io/MdVinyls/"; // Nouveau lien de redirection
-    const scopes = "user-read-playback-state user-modify-playback-state";
+    const scopes = "user-read-playback-state user-modify-playback-state user-read-private";
     const url = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
     console.log("Redirection vers Spotify:", url); // Log de débogage
     window.location.href = url;
@@ -22,11 +22,33 @@ function handleSpotifyRedirect() {
             document.getElementById("status").innerText = "Connecté à Spotify !";
             document.getElementById("connect-btn").style.display = "none";
             document.getElementById("refresh-btn").style.display = "inline-block";
+            fetchUserProfile();
             fetchCurrentlyPlaying();
         } else {
             console.error("Erreur : le token d'accès est introuvable.");
             document.getElementById("status").innerText = "Erreur de connexion. Veuillez réessayer.";
         }
+    }
+}
+
+// Fonction pour récupérer les informations de l'utilisateur
+async function fetchUserProfile() {
+    try {
+        const response = await fetch("https://api.spotify.com/v1/me", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        if (response.status === 200) {
+            const data = await response.json();
+            const userName = data.display_name;
+            document.getElementById("welcome-message").innerText = `Bonjour, ${userName} !`;
+        } else {
+            console.error("Erreur de l'API Spotify :", response.status);
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération des informations de l'utilisateur :", error);
     }
 }
 
